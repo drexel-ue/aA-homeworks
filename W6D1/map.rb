@@ -12,4 +12,8 @@ class Map
         @underlying_arr[@underlying_arr.index { |pair| pair[0] == key }]
     end
 
+    def delete(key)
+        @underlying_arr.delete_if { |pair| pair[0] == key }
+    end
+
 end
