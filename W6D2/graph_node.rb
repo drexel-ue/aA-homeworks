@@ -9,6 +9,10 @@ class GraphNode
         self.neighbors = []
     end
 
+    def add_neighbor(node)
+        self.neighbors << node
+    end
+
 end
 
 def bfs(starting_node, target_value, visited = Set.new())
