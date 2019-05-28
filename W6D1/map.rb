@@ -4,4 +4,8 @@ class Map
         @underlying_arr = []
     end
 
+    def set(key, value)
+        @underlying_arr << [key, value]
+    end
+
 end
