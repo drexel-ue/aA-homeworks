@@ -15,13 +15,18 @@ class GraphNode
 
 end
 
-def bfs(starting_node, target_value, visited = Set.new())
-    return starting_node if starting_node.val = target_value
-    return nil if visited.include?(starting_node.to_sym)
+def bfs(starting_node, target_value)
+    queue = [starting_node]
+    visited = Set.new()
 
-    visited.add(starting_node.to_sym)
-
-    starting_node.neighbors.each do |neighbor| 
-        bfs(neighbor, target_value, visited)
+    until queue.empty?
+        node = queue.shift
+        unless visited.include?(node)
+            return node.val if node.val == target_value
+            visited.add(node)
+            queue += node.neighbors
+        end
     end
+    
+    return nil
 end
