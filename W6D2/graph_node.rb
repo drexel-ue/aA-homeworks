@@ -1,3 +1,5 @@
+require 'set'
+
 class GraphNode
 
     attr_accessor :val, :neighbors
