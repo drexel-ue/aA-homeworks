@@ -32,7 +32,15 @@ class Simon
   end
 
   def require_sequence
-
+    puts "What ya got for me ?"
+    @seq.each do |color|
+      input = gets.chomp
+      if color[0] != user_color
+        @game_over = true
+        break
+      end
+    end
+    sleep 0.25
   end
 
   def add_random_color
