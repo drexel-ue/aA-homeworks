@@ -40,11 +40,11 @@ class Simon
   end
 
   def round_success_message
-
+    'Okay, can can you handel this ... ???'
   end
 
   def game_over_message
-
+    'Aye it happens'
   end
 
   def reset_game
