@@ -58,5 +58,13 @@ class Board
   end
 
   def winner
+    player1_points = @cups[6].count
+    player2_points = @cups[13].count
+    if player1_points == player2_points
+      :draw
+    else
+      player1_points > player2_points ? @name1 : @name2
+    end
   end
+
 end
