@@ -48,6 +48,6 @@ class Simon
   end
 
   def reset_game
-
+    @sequence_length, @game_over, @seq = 1, false, []
   end
 end
