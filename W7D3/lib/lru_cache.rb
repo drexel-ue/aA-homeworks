@@ -7,6 +7,7 @@ class LRUCache
 
     def add(el)
       # adds element to cache according to LRU principle
+      @cache << el
     end
 
     def count
