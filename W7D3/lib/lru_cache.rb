@@ -1,7 +1,7 @@
 class LRUCache
 
     def initialize(max)
-        @cache = Array.new(max) { Array.new }
+        @cache = Array.new
         @max = max
     end
 
