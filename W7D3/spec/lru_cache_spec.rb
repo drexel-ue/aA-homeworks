@@ -49,10 +49,19 @@ describe 'LRUCache' do
     describe "#count" do
         
         subject(:cache) { LRUCache.new(4) }
-        let(:lru) { [1, 2, 3, 4, 5] }
-        let(:mru) { 'nachooooooooo' }
+        let(:one) { [1, 2, 3, 4, 5] }
+        let(:two) { 'nachooooooooo' }
+        let(:three) { 30982 }
 
-        
+        it 'should return the number of elements in the cache' do
+
+            cache.add(one)
+            cache.add(two)
+            cache.add(three)
+
+            expect(cache.count).to eq(3)
+
+        end
 
     end
     
