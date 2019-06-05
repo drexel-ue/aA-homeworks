@@ -26,6 +26,14 @@ describe 'LRUCache' do
         it 'should add a new element to the end of the cache' do
 
             cache.add(one)
+
+            expect(cache.show).to eq([one])
+
+        end
+
+        it 'should remove the lru when at capacity and an other element is to be added' do
+
+            cache.add(one)
             cache.add(two)
             cache.add(three)
             cache.add(four)
@@ -35,7 +43,6 @@ describe 'LRUCache' do
 
         end
 
-        # it should
 
     end
 
