@@ -7,11 +7,13 @@ class LRUCache
 
     def add(el)
       # adds element to cache according to LRU principle
+      @cache.shift if count == 4
       @cache << el
     end
 
     def count
       # returns number of elements currently in cache
+      @cache.count
     end
 
     def show

@@ -17,17 +17,37 @@ describe 'LRUCache' do
     describe '#add' do
 
         subject(:cache) { LRUCache.new(4) }
-        let(:lru) { [1, 2, 3, 4, 5] }
-        let(:mru) { 'nachooooooooo' }
+        let(:one) { [1, 2, 3, 4, 5] }
+        let(:two) { 'nachooooooooo' }
+        let(:three) { 30982 }
+        let(:four) { {wimble:123, horsey:'🐴'} }
+        let(:five) { 'five' }
 
         it 'should add a new element to the end of the cache' do
 
-            cache.add(lru)
-            cache.add(mru)
-            expect(cache.show).to eq([[1, 2, 3, 4, 5], 'nachooooooooo'])
+            cache.add(one)
+            cache.add(two)
+            cache.add(three)
+            cache.add(four)
+            cache.add(five)
+
+            expect(cache.show).to eq([two, three, four, five])
 
         end
 
+        # it should
+
     end
+
+    describe "#count" do
+        
+        subject(:cache) { LRUCache.new(4) }
+        let(:lru) { [1, 2, 3, 4, 5] }
+        let(:mru) { 'nachooooooooo' }
+
+        
+
+    end
+    
 
 end
