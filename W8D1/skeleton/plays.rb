@@ -78,7 +78,21 @@ class Playwright
 
   def self.all
     data = PlayDBConnection.instance.execute("SELECT * FROM playwrights")
-    data.map { |datum| Play.new(datum) }
+    data.map { |datum| PlayWright.new(datum) }
+  end
+
+  def self.find_by_name(name)
+    data = PlayDBConnection.instance.execute(<<-SQL, playwright_name: name)
+      select * from playwrights
+      where name = playwright_name
+    SQL
+    data.map { |datum| PlayWright.new(datum) }
+  end
+
+  def initialize(info)
+    @id = info['id']
+    @name = info['name']
+    @birth_year = info['birth_year']
   end
 
 end
