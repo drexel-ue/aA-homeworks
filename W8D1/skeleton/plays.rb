@@ -89,10 +89,21 @@ class Playwright
     data.map { |datum| PlayWright.new(datum) }
   end
 
+  attr_reader :id, :name, :birth_year
+
   def initialize(info)
     @id = info['id']
     @name = info['name']
     @birth_year = info['birth_year']
+  end
+
+  def create
+    rasie "#{self} already in database" if @id
+    PlayDBConnection.instance.execute(<<-SQL, pw_name: self.name, pw_birthyear: self.birth_year)
+      insert into playwrights (name, birthyear)
+      values (pw_name, pw_birthyear)
+    SQL
+    self.id = PlayDBConnection.instance.last_insert_row_id
   end
 
 end
