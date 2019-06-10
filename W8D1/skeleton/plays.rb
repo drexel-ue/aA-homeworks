@@ -98,12 +98,21 @@ class Playwright
   end
 
   def create
-    rasie "#{self} already in database" if @id
+    raise "#{self} already in database" if @id
     PlayDBConnection.instance.execute(<<-SQL, pw_name: self.name, pw_birthyear: self.birth_year)
       insert into playwrights (name, birthyear)
       values (pw_name, pw_birthyear)
     SQL
     self.id = PlayDBConnection.instance.last_insert_row_id
+  end
+
+  def update
+    raise "#{self} not in database" unless @id
+    PlayDBConnection.instance.execute(<<-SQL, pw_id: self.id, pw_name: self.name, pw_birthyear: self.birth_year)
+      update playwrights
+      set name = pw_name, birthyear = pw_birthyear
+      where id = pw_id
+    SQL
   end
 
 end
