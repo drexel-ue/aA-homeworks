@@ -110,8 +110,8 @@ class PlayWright
     raise "#{self} not in database" unless @id
     PlayDBConnection.instance.execute(<<-SQL, pw_id: self.id, pw_name: self.name, pw_birthyear: self.birth_year)
       update playwrights
-      set name = pw_name, birthyear = pw_birthyear
-      where id = pw_id
+      set name = :pw_name, birth_year = :pw_birthyear
+      where id = :pw_id
     SQL
   end
 
