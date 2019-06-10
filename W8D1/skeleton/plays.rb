@@ -2,6 +2,7 @@ require 'sqlite3'
 require 'singleton'
 
 class PlayDBConnection < SQLite3::Database
+
   include Singleton
 
   def initialize
@@ -9,13 +10,34 @@ class PlayDBConnection < SQLite3::Database
     self.type_translation = true
     self.results_as_hash = true
   end
+
 end
 
 class Play
+
   attr_accessor :id, :title, :year, :playwright_id
 
   def self.all
     data = PlayDBConnection.instance.execute("SELECT * FROM plays")
+    data.map { |datum| Play.new(datum) }
+  end
+
+  def self.find_by_title(title)
+    raise "#{self} not in database" unless self.id
+    data = PlayDBConnection.instance.execute(<<-SQL, play_title: title)
+      select * from plays
+      where title = play_title
+    SQL
+    data.map { |datum| Play.new(datum) }
+  end
+
+  def self.find_by_playwright(name)
+    raise "#{self} not in database" unless self.id
+    PlayDBConnection.instance.execute(<<-SQL, playwright_name: name)
+      select * from plays
+      join playwrights on playwrights.id = plays.id
+      where playwrights.name = playwright_name
+    SQL
     data.map { |datum| Play.new(datum) }
   end
 
@@ -48,4 +70,17 @@ class Play
         id = ?
     SQL
   end
+
+end
+
+
+class Playwright
+
+  def self.all
+    def self.all
+      data = PlayDBConnection.instance.execute("SELECT * FROM plays")
+      data.map { |datum| Play.new(datum) }
+    end
+  end
+
 end
