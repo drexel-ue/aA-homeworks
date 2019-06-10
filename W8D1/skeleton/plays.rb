@@ -77,10 +77,8 @@ end
 class Playwright
 
   def self.all
-    def self.all
-      data = PlayDBConnection.instance.execute("SELECT * FROM plays")
-      data.map { |datum| Play.new(datum) }
-    end
+    data = PlayDBConnection.instance.execute("SELECT * FROM playwrights")
+    data.map { |datum| Play.new(datum) }
   end
 
 end
