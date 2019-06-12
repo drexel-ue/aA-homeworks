@@ -14,6 +14,10 @@ class Artist < ApplicationRecord
     foreign_key: :artist_id,
     primary_key: :id
 
+  has_many :tracks,
+    through: :albums,
+    source: :tracks
+
   def n_plus_one_tracks
     albums = self.albums
     tracks_count = {}
@@ -25,6 +29,6 @@ class Artist < ApplicationRecord
   end
 
   def better_tracks_query
-    # TODO: your code here
+    Artist.select('count(tracks.title)').joins(:tracks).group('artists.name').where('artists.name = :name', name:self.name).load
   end
 end
