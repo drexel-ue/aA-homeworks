@@ -18,6 +18,10 @@ class House < ApplicationRecord
     through: :gardeners,
     source: :plants
 
+  has_many :seeds,
+    through: :plants,
+    source: :seeds
+
   def n_plus_one_seeds
     plants = self.plants
     seeds = []
@@ -29,6 +33,6 @@ class House < ApplicationRecord
   end
 
   def better_seeds_query
-    # TODO: your code here
+    Seed.select('seeds.*').joins(:house).where('houses.id = :id', id: id)
   end
 end

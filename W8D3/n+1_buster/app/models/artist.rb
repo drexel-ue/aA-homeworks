@@ -29,6 +29,6 @@ class Artist < ApplicationRecord
   end
 
   def better_tracks_query
-    Artist.select('count(tracks.title)').joins(:tracks).group('artists.name').where('artists.name = :name', name:self.name).load
+    self.tracks
   end
 end

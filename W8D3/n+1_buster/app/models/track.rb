@@ -14,4 +14,8 @@ class Track < ApplicationRecord
     class_name: 'Album',
     foreign_key: :album_id,
     primary_key: :id
+
+  belongs_to :artist,
+    through: :album,
+    source: :artist
 end

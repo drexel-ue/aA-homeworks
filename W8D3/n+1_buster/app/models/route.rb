@@ -30,6 +30,7 @@ class Route < ApplicationRecord
   end
 
   def better_drivers_query
-    # TODO: your code here
+    drivers = self.buses.joins(:drivers).select('drivers.*')
+    drivers
   end
 end
