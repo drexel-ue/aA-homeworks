@@ -14,12 +14,4 @@ class Seed < ApplicationRecord
     class_name: 'Plant',
     foreign_key: :plant_id,
     primary_key: :id
-  
-  belongs_to :gardener,
-    through: :plant,
-    source: :gardener
-
-  belongs_to :house,
-    through: :gardener,
-    source: :house
 end

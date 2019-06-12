@@ -30,9 +30,13 @@ class House < ApplicationRecord
 
   def better_seeds_query
     plants = self.plants.includes(:seeds)
-    
     seeds = []
-    plants.each { |plant| seeds << plant.seeds }
+
+    plants.each do |plant|
+      # will not fire a query for each plant since seeds have already been prefetched
+      seeds << plant.seeds
+    end
+
     seeds
   end
 end
