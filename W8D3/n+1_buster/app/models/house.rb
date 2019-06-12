@@ -33,7 +33,6 @@ class House < ApplicationRecord
     seeds = []
 
     plants.each do |plant|
-      # will not fire a query for each plant since seeds have already been prefetched
       seeds << plant.seeds
     end
 
