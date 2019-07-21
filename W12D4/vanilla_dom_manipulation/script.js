@@ -26,8 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const places = document.querySelector('#sf-places');
     const newPlace = document.createElement('li');
-    const toBeAppended = document.createTextNode(text);
-    newPlace.appendChild(toBeAppended);
+    newPlace.text = text;
     places.appendChild(newPlace);
   });
 
